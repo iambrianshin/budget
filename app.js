@@ -3,13 +3,24 @@ var budgetController = (function() {})();
 
 // UI CONTROLLER
 var UIController = (function() {
+  var DOMstrings = {
+    inputType: ".add__type",
+    inputDescription: ".add__description",
+    inputValue: ".add_value",
+    inputBtn: ".add__btn"
+  };
+
   return {
-    getinput: function() {
+    getInput: function() {
       return {
-        type: document.querySelector(".add__type").value, // Will be either inc or exp
-        description: document.querySelector(".add__description").value,
-        value: document.querySelector("add__value").value
+        type: document.querySelector(DOMstrings.inputType).value, // Will be either inc or exp
+        description: document.querySelector(DOMstrings.inputDescription).value,
+        value: document.querySelector(DOMstrings.inputValue).value
       };
+    },
+
+    getDOMStrings: function() {
+      return DOMstrings;
     }
   };
 })();
@@ -17,6 +28,8 @@ var UIController = (function() {
 // GLOBAL APP CONTROLLER
 
 var controller = (function(budgetCtrl, UICtrl) {
+  var DOM = UICtrl.getDOMStrings();
+
   var ctrlAddItem = function() {
     // 1. Get the filed input data
     var input = UICtrl.getInput();
@@ -31,7 +44,7 @@ var controller = (function(budgetCtrl, UICtrl) {
     // 5. Display the budget on the UI
   };
 
-  document.querySelector(".add__btn").addEventListener("click", ctrlAddItem);
+  document.querySelector(DOM.inputBtn).addEventListener("click", ctrlAddItem);
 
   document.addEventListener("keypress", function(event) {
     if (event.keyCode === 13 || event.which === 13) {
