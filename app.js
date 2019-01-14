@@ -1,4 +1,4 @@
-
+// BUDGET CONTROLLER
 var budgetController = (function() {})();
 
 // UI CONTROLLER
